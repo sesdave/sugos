@@ -1,0 +1,55 @@
+{% extends 'basead.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Home</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.post }}
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+            <h2>{{ text }}</h2>
+            {% for post in posts %}
+                <h1>{{ post.post }}</h1>
+                <p>Posted by {{ post.user.username }} on {{ post.created }}</p>
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+             <h2>Other People</h2>
+            <div class="row">
+
+                    {% for user in users %}
+                    <div class="col-md-5">
+                        <a  href="{% url 'view_profile' pk=user.pk %}">
+                            <h3>{{ user.username }}</h3>
+                            <img src="{{ user.user_profile.image.url_60x60 }}"/>
+                        </a>
+                        {% if not user in friends %}
+                        <a href="{% url 'change_friends' operation='add' pk=user.pk %}">
+                        <button type="button" class="btn btn-success">Follow</button>
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+            </div>
+             {% for friend in friends %}
+                <h2>Friends</h2>
+                    <div class="row">
+                            <div class="col-md-5">
+                                <a href="{% url 'view_profile' pk=user.pk %}">
+                                    <h3>{{ friend.username }}</h3>
+                                </a>
+                                <a href="{% url 'change_friends' operation='remove' pk=friend.pk %}">
+                                <button type="button" class="btn btn-default">Remove Friend</button>
+                                </a>
+                            </div>
+                    </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

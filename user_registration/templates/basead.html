@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+        {% block head %}
+        <title>Base</title>
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                <a href="#" class="navbar-brand">Logo</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav">
+                        <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+
+
+                    </div>
+
+
+                    <a href="{% url 'view_profile' %}">
+                        <img src="{{request.user.user_profile.image.url_60x60}}" style="height:40px;"
+                             alt="{{request.user.fullname}}" class="avatar rounded-circle">
+                        <span class="header-username">{{request.user.username}}</span>
+                    </a>
+                    <form class="form-inline ml-auto">
+                        <input type="text" class="form-control mr-sm-2" placeholder="Search">
+                        <button type="submit" class="btn btn-outline-light">Search</button>
+                    </form>
+                    <a href="/accounts/logout/" class="nav-item nav-link active">LogOut</a>
+
+                </div>
+            </nav>
+        <div class="container">
+
+        </div>
+        {% block body %}
+            <h1>Base</h1>
+        {% endblock %}
+    </body>
+
+</html>
