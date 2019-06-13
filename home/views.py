@@ -55,6 +55,7 @@ def view_profile(request, pk=None):
         user = User.objects.get(pk=pk)
     else:
         user = request.user
-    args = {'user': user}
+    posts = Post.objects.all().order_by('-created')
+    args = {'user': user, 'posts':posts}
     return render(request, 'home/personal_profile.html', args)
 

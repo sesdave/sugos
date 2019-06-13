@@ -1,18 +1,21 @@
 <html>
+{% load staticfiles %}
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
         {% block head %}
         <title>Base</title>
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
                 <a href="#" class="navbar-brand">Logo</a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -31,6 +34,66 @@
                              alt="{{request.user.fullname}}" class="avatar rounded-circle">
                         <span class="header-username">{{request.user.username}}</span>
                     </a>
+                    <ul class="nav navbar-nav navbar-right pull-right">
+                                <li class="dropdown hidden-xs">
+                                    <a href="#" data-target="#" class="dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="md md-notifications"></i> <span class="badge badge-xs badge-danger"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-lg">
+                                        <li class="text-center notifi-title">Notification</li>
+                                        <li class="list-group">
+                                           <!-- list item-->
+                                           <a href="javascript:void(0);" class="list-group-item">
+                                              <div class="media">
+                                                 <div class="pull-left">
+                                                    <em class="fa fa-user-plus fa-2x text-info"></em>
+                                                 </div>
+                                                 <div class="media-body clearfix">
+                                                    <div class="media-heading">New user registered</div>
+                                                    <p class="m-0">
+                                                       <small>You have 10 unread messages</small>
+                                                    </p>
+                                                 </div>
+                                              </div>
+                                           </a>
+                                           <!-- list item-->
+                                            <a href="javascript:void(0);" class="list-group-item">
+                                              <div class="media">
+                                                 <div class="pull-left">
+                                                    <em class="fa fa-diamond fa-2x text-primary"></em>
+                                                 </div>
+                                                 <div class="media-body clearfix">
+                                                    <div class="media-heading">New settings</div>
+                                                    <p class="m-0">
+                                                       <small>There are new settings available</small>
+                                                    </p>
+                                                 </div>
+                                              </div>
+                                            </a>
+                                            <!-- list item-->
+                                            <a href="javascript:void(0);" class="list-group-item">
+                                              <div class="media">
+                                                 <div class="pull-left">
+                                                    <em class="fa fa-bell-o fa-2x text-danger"></em>
+                                                 </div>
+                                                 <div class="media-body clearfix">
+                                                    <div class="media-heading">Updates</div>
+                                                    <p class="m-0">
+                                                       <small>There are
+                                                          <span class="text-primary">2</span> new updates available</small>
+                                                    </p>
+                                                 </div>
+                                              </div>
+                                            </a>
+                                           <!-- last list item -->
+                                            <a href="javascript:void(0);" class="list-group-item">
+                                              <small>See all notifications</small>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
                     <form class="form-inline ml-auto">
                         <input type="text" class="form-control mr-sm-2" placeholder="Search">
                         <button type="submit" class="btn btn-outline-light">Search</button>

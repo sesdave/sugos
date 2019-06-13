@@ -4,20 +4,32 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <h2>Home</h2>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.post }}
-                <br>
-                <button type="submit">Submit</button>
-            </form>
-            <h2>{{ text }}</h2>
+          <br>
+
+            <div class="card">
+
+                <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.post }}
+                            <br>
+                            <button type="submit">Submit</button>
+                        </form>
+                        <h2>{{ text }}</h2>
+                </div>
+              </div>
             {% for post in posts %}
-                <h1>{{ post.post }}</h1>
-                <p>Posted by {{ post.user.username }} on {{ post.created }}</p>
+                <div class="card">
+                    <p>Posted by {{ post.user.username }} on {{ post.created }}</p>
+                    <div class="card-body">
+                        <hr>
+                        <h1>{{ post.post }}</h1>
+                    </div>
+                </div>
             {% endfor %}
+
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 sticky">
              <h2>Other People</h2>
             <div class="row">
 
