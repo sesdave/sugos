@@ -25,6 +25,13 @@
             <div class="bg-light p-4 d-flex justify-content-end text-center">
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item">
+						<a class="btn btn-block btn-social btn-twitter">
+                            <button class="btn btn-primary">
+                                <span class="fa fa-twitter"></span> Follow
+                            </button>
+                          </a>
+					</li>
+                    <li class="list-inline-item">
                         <h5 class="font-weight-bold mb-0 d-block">241</h5><small class="text-muted"> <i class="fa fa-picture-o mr-1"></i>Photos</small>
                     </li>
                     <li class="list-inline-item">
@@ -39,7 +46,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 col-md-8">
 
                         {% for post in posts %}
                             <div class="card">
@@ -49,6 +56,23 @@
                                 </div>
                             </div>
                         {% endfor %}
+                    </div>
+                    <div class="col-lg-4 col-md-8">
+                         <div class="card">
+                            <h2>Friends</h2>
+                            {% for friend in friends %}
+
+                                    <div class="row">
+                                            <div class="col-lg-3 col-sm-3">
+                                                <a href="{% url 'view_profile' pk=friend.pk %}">
+                                                    <img src="{{ friend.user_profile.image.url_60x60 }}"/>
+                                                    {{ friend.username }}
+                                                </a>
+
+                                            </div>
+                                    </div>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
 

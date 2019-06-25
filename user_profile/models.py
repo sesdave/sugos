@@ -46,6 +46,12 @@ class UserProfile(models.Model):
     rc_number = models.CharField(max_length=60,blank=True, null=True, default=None)
     company_name = models.CharField(max_length=60,blank=True, null=True, default=None)
     website = models.CharField(max_length=60,blank=True, null=True, default=None)
+
+    name = models.CharField(max_length=60, blank=True, null=True, default=None)
+    surname = models.CharField(max_length=60, blank=True, null=True, default=None)
+    middle_name = models.CharField(max_length=60, blank=True, null=True, default=None)
+    sector_of_operation = models.CharField(max_length=60, blank=True, null=True, default=None)
+    phone_number = models.CharField(max_length=60, blank=True, null=True, default=None)
     reg_status = models.IntegerField(default=0)
     plans = models.CharField(max_length=60,blank=True, null=True, default=None)
     #birth_date = models.DateField(null=True, blank=True)

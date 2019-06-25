@@ -9,50 +9,69 @@
             <div class="card">
 
                 <div class="card-body">
-                        <form method="post">
+                        <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             {{ form.post }}
+                            {{ form.videofile }}
                             <br>
-                            <button type="submit">Submit</button>
+                            <button type="submit" class="pull-right">Submit</button>
                         </form>
                         <h2>{{ text }}</h2>
                 </div>
               </div>
             {% for post in posts %}
                 <div class="card">
-                    <p>Posted by {{ post.user.username }} on {{ post.created }}</p>
+                    Posted by {{ post.user.username }} on {{ post.created }}
                     <div class="card-body">
                         <hr>
-                        <h1>{{ post.post }}</h1>
+                        {{ post.post }}
+                        <br/>
+                        {% if post.videofile %}
+                            <video width="450" height="300" controls>
+                                <source src={{ post.videofile.url }}>
+                            </video>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
 
         </div>
-        <div class="col-md-4 sticky">
-             <h2>Other People</h2>
-            <div class="row">
+        <div class="col-md-3 sticky">
+            <div class="card">
+                <div class="card-head">
+                    <h4>Related Businesses</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
 
-                    {% for user in users %}
-                    <div class="col-md-5">
-                        <a  href="{% url 'view_profile' pk=user.pk %}">
-                            <h3>{{ user.username }}</h3>
-                            <img src="{{ user.user_profile.image.url_60x60 }}"/>
-                        </a>
-                        {% if not user in friends %}
-                        <a href="{% url 'change_friends' operation='add' pk=user.pk %}">
-                        <button type="button" class="btn btn-success">Follow</button>
-                        </a>
-                        {% endif %}
+                            {% for user in users %}
+                            {% if not user in friends %}
+                            <div class="col-md-4">
+                                <a  href="{% url 'view_profile' pk=user.pk %}">
+                                    <img src="{{ user.user_profile.image.url_60x60 }}"/>
+                                </a>
+                            </div>
+                            <div class="col-md-8">
+                                <a  href="{% url 'view_profile' pk=user.pk %}">
+                                    <h5>{{ user.username }}</h5>
+
+                                </a>
+
+                                <a href="{% url 'change_friends' operation='add' pk=user.pk %}">
+                                <button type="button" class="btn btn-success">Follow</button>
+                                </a>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
                     </div>
-                    {% endfor %}
+                </div>
             </div>
              {% for friend in friends %}
                 <h2>Friends</h2>
                     <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-3">
                                 <a href="{% url 'view_profile' pk=user.pk %}">
-                                    <h3>{{ friend.username }}</h3>
+                                    {{ friend.username }}
                                 </a>
                                 <a href="{% url 'change_friends' operation='remove' pk=friend.pk %}">
                                 <button type="button" class="btn btn-default">Remove Friend</button>

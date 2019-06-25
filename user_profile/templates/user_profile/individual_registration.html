@@ -1,0 +1,153 @@
+{% load staticfiles %}
+<!Doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="{% static 'assets/css/reg_style.css' %}" rel="stylesheet" />
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+
+        <!-- CSS Files -->
+
+
+
+
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+
+
+
+	</head>
+	<body>
+		<br>
+<form  enctype="multipart/form-data" method="post" action=".">
+    {% csrf_token %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12 lead">
+                Edit user profile
+                <hr>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <div class="text-center">
+				  <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+				  <h6>Upload a different photo...</h6>
+
+				  {{ user_profile_form.image }}
+				</div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label>Last name</label>
+                  {{ user_profile_form.surname }}
+                </div>
+                <div class="form-group">
+                  <label>First name</label>
+                  {{ user_profile_form.name }}
+                </div>
+                <div class="form-group">
+                  <label>Middle name</label>
+                  {{ user_profile_form.middle_name }}
+                </div>
+                <div class="radio">
+                  <label class="radio-inline">
+                    <input type="radio" value="employed" checked="checked" name="user[gender]" id="user_gender_male">Employed
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" value="unemployed" name="user[gender]" id="user_gender_female">Unemployed
+                  </label>
+
+                </div>
+				<div class="form-group">
+                  <label>Phone Number</label>
+                  {{ user_profile_form.phone_number }}
+                    <input type="hidden" name="reg_save" value="1"/>
+                    <input type="hidden" name="account_save" value="1"/>
+                </div>
+                <div class="form-group">
+                  <label>Sector of Operation</label>
+                  <div class="ui-select">
+					<select id="user_time_zone" class="form-control">
+					  <option value="Hawaii">(GMT-10:00) Hawaii</option>
+					  <option value="Alaska">(GMT-09:00) Alaska</option>
+					  <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+					  <option value="Arizona">(GMT-07:00) Arizona</option>
+					  <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+					  <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+					  <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+					  <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+					</select>
+				  </div>
+                </div>
+				<div class="form-group">
+                  <div class="row">
+
+
+                                        <div class="col-sm-3">
+                                            <div class="choice" data-toggle="wizard-radio">
+                                                <input type="radio" name="jobb" value="Design">
+                                                <div class="icon">
+                                                    <i class="fa fa-pencil"></i>
+                                                </div>
+                                                <h6>Premium</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="choice" data-toggle="wizard-radio">
+                                                <input type="radio" name="jobb" value="Code">
+                                                <div class="icon">
+                                                    <i class="fa fa-terminal"></i>
+                                                </div>
+                                                <h6>Maxi</h6>
+                                            </div>
+
+                                        </div>
+
+
+
+
+
+                                </div>
+                </div>
+
+
+
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <hr>
+                  <a href="/accounts/logout/" class="nav-item nav-link active">LogOut</a>
+
+                  <input type='submit' class='btn btn-primary pull-right' name='finish' value='Save'>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+	</body>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	    <script src="{% static 'assets/js/jquery.bootstrap.wizard.js' %}" type="text/javascript"></script>
+
+	<!--  Plugin for the Wizard -->
+	<script src="{% static 'assets/js/gsdk-bootstrap-wizard.js' %}"></script>
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+	<script src="{% static 'assets/js/jquery.validate.min.js' %}"></script>
+
+</html>
