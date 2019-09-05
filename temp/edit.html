@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<br>
+<form>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12 lead">
+                Edit user profile
+                <hr>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <div class="text-center">
+				  <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+				  <h6>Upload a different photo...</h6>
+				  
+				  <input type="file" class="form-control">
+				</div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label for="user_last_name">Last name</label>
+                  <input type="text" class="form-control" id="user_last_name">
+                </div>
+                <div class="form-group">
+                  <label for="user_first_name">First name</label>
+                  <input type="text" class="form-control" id="user_first_name">
+                </div>
+                <div class="form-group">
+                  <label for="user_middle_name">Middle name</label>
+                  <input type="text" class="form-control" id="user_middle_name">
+                </div>
+                <div class="radio">
+                  <label class="radio-inline">
+                    <input type="radio" value="employed" checked="checked" name="user[gender]" id="user_gender_male">Employed
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" value="unemployed" name="user[gender]" id="user_gender_female">Unemployed
+                  </label>
+                  
+                </div>
+				<div class="form-group">
+                  <label for="user_middle_name">Phone Number</label>
+                  <input type="text" class="form-control" id="user_middle_name">
+                </div>
+				<div class="form-group">
+                  <label for="user_middle_name">Sector of Operation</label>
+                  <div class="ui-select">
+					<select id="user_time_zone" class="form-control">
+					  <option value="Hawaii">(GMT-10:00) Hawaii</option>
+					  <option value="Alaska">(GMT-09:00) Alaska</option>
+					  <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+					  <option value="Arizona">(GMT-07:00) Arizona</option>
+					  <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+					  <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+					  <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+					  <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+					</select>
+				  </div>
+                </div>
+				<div class="form-group">
+                  <label for="user_middle_name">Phone Number</label>
+                  <input type="text" class="form-control" id="user_middle_name">
+                </div>
+                
+                
+                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <hr>
+                <button class="btn btn-primary pull-right"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</form>
+	</body>
+
+</html>

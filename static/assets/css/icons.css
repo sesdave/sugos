@@ -17,6 +17,9 @@ File: Icons
   font-weight: normal;
   font-style: normal;
 }
+body{
+    background-color:#eaeaea;
+}
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;

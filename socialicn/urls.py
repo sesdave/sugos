@@ -19,6 +19,16 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from socialicn import views
 from django.conf import settings
+from dispatch import receiver
+from paystack import signals
+
+
+@receiver(signals.successful_payment_signal)
+def on_successful_payment(sender, **kwargs):
+    import pdb
+
+    pdb.set_trace()
+    pass
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +37,8 @@ urlpatterns = [
     url(r'^', include('user_registration.urls')),
     url(r'^', include('user_profile.urls')),
     url(r'^', include('home.urls')),
+    #url(r'^', include('process_payment.urls')),
+    url(r'^paystack/', include(('paystack.urls', 'paystack'), namespace="paystack")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

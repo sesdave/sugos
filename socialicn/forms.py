@@ -8,10 +8,10 @@ ACCOUNT_CHOICE=[
 ]
 
 class CustomSignupForm(SignupForm):
-    account_type = forms.ChoiceField(choices=ACCOUNT_CHOICE)
+    first_name = forms.ChoiceField(choices=ACCOUNT_CHOICE)
     #account_type = forms.IntegerField()
 
     def signup(self, request, user):
-        user.first_name = self.cleaned_data['account_type']
+        user.first_name = self.cleaned_data['first_name']
         user.save()
         return user

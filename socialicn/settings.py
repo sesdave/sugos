@@ -25,7 +25,7 @@ SECRET_KEY = 's9mo#3g(cfd88(ou!loo1f(%r6pi5xpq&b4pdb@ir9^-3$ik*i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'user_profile',
     'user_registration',
     'bootstrap4',
+    'paystack',
+    'process_payment',
 
     'allauth',
     'allauth.account',
@@ -180,6 +182,9 @@ ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
 #LOGIN_REDIRECT_URL = '/accounts/email/'
 
 DEFAULT_FROM_EMAIL = "tyohembadavid@yahoo.com"
+PAYSTACK_PUBLIC_KEY = 'pk_test_aeda5f517067e18dcc905a5193b7f68b87f9e51b'
+PAYSTACK_SECRET_KEY = 'sk_test_77b2f6a7228f028bd047875fa8cf6ab15b6741ee'
+PAYSTACK_WEBHOOK_DOMAIN = 'tuteria.ngrok.io'
 
 
 

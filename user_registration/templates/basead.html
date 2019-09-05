@@ -1,18 +1,28 @@
 <html>
 {% load staticfiles %}
-    <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" />
+        <link rel="stylesheet" href="{% static 'assets/css/anomessage.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/friendlist.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
 
         {% block head %}
-        <title>Base</title>
+        <title>Sugos</title>
         {% endblock %}
+        <style>
+            body{
+            background-color:#efeaea;
+        }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
@@ -32,7 +42,7 @@
                     <a href="{% url 'view_profile' %}">
                         <img src="{{request.user.user_profile.image.url_60x60}}" style="height:40px;"
                              alt="{{request.user.fullname}}" class="avatar rounded-circle">
-                        <span class="header-username">{{request.user.fullname}}</span>
+                        <span class="header-username">{{request.user.username}}</span>
                     </a>
                     <ul class="nav navbar-nav navbar-right pull-right">
                                 <li class="dropdown hidden-xs">
@@ -40,7 +50,35 @@
                                         <i class="fa fa-envelope-o" style="font-size:48px;color:white"></i> <span class="badge badge-xs badge-danger"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-lg" id="notification">
+                                        <li class="text-center notifi-title">Notification</li>
+                                        {% for mess in message %}
+                                        <li>mess</li>
 
+                                        {% endfor %}
+                                        <li class="list-group">
+                                           <!-- list item-->
+                                            {% for arruse in user_array %}
+                                           <a href="{% url 'view_message' pk=arruse.pk  %}" class="list-group-item">
+                                              <div class="media">
+                                                 <div class="pull-left">
+                                                    <em class="fa fa-user-plus fa-2x text-info"></em>
+                                                 </div>
+                                                 <div class="media-body clearfix">
+                                                    <div class="media-heading"> {{ arruse.username }}</div>
+                                                    <p class="m-0">
+                                                    </p>
+                                                 </div>
+                                              </div>
+                                           </a>
+                                            {% endfor %}
+                                           <!-- list item-->
+                                            <!-- list item-->
+
+                                           <!-- last list item -->
+                                            <a href="javascript:void(0);" class="list-group-item">
+                                              <small>See all messages</small>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
 
@@ -60,14 +98,7 @@
             <h1>Base</h1>
         {% endblock %}
 
-        <script>
-            $(Document).ready(function(){
-                $('.count').html('4');
-		        var added="<a href='{% url 'view_message' %}'><li class='text-center notifi-title'>Notification</li></a><li class='text-center notifi-title'>ghghh hhh </li>";
 
-	            $('#notification').html(added);
-            });
-        </script>>
     </body>
 
 </html>

@@ -15,6 +15,9 @@ class UserMessage(models.Model):
     message=models.CharField(max_length=500)
     time_sent=models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.sent_from.username
+
 
 class Friend(models.Model):
     users = models.ManyToManyField(User)

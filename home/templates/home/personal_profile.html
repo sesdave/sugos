@@ -24,13 +24,22 @@
 
             <div class="bg-light p-4 d-flex justify-content-end text-center">
                 <ul class="list-inline mb-0">
+                    {% ifnotequal request.user user %}
                     <li class="list-inline-item">
-						<a class="btn btn-block btn-social btn-twitter">
+						<a href="{% url 'view_message' pk=user.pk  %}" class="btn btn-block btn-social btn-twitter">
+                            <button class="btn btn-dark">
+                                <span class="fa fa-envelope"></span> Message
+                            </button>
+                          </a>
+					</li>
+                    <li class="list-inline-item">
+						<a href="{% url 'change_friends' operation='add' pk=user.pk %}" class="btn btn-block btn-social btn-twitter">
                             <button class="btn btn-primary">
                                 <span class="fa fa-twitter"></span> Follow
                             </button>
                           </a>
 					</li>
+                    {% endifnotequal %}
                     <li class="list-inline-item">
                         <h5 class="font-weight-bold mb-0 d-block">241</h5><small class="text-muted"> <i class="fa fa-picture-o mr-1"></i>Photos</small>
                     </li>

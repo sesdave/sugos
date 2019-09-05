@@ -1,35 +1,101 @@
 {% extends 'basead.html' %}
+{% load staticfiles %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'assets/css/anomessage.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-          <br>
 
-            <div class="card">
+<div class="container-fluid h-100">
+			<div class="row justify-content-center h-100">
 
-                <div class="card-body">
-                        <form method="post">
-                            {% csrf_token %}
-                            {{ form.post }}
-                            <br>
-                            <button type="submit">Submit</button>
-                        </form>
-                        <h2>{{ text }}</h2>
-                </div>
-              </div>
-            {% for post in posts %}
-                <div class="card">
-                    <p>Posted by {{ post.user.username }} on {{ post.created }}</p>
-                    <div class="card-body">
-                        <hr>
-                        <h1>{{ post.post }}</h1>
-                    </div>
-                </div>
-            {% endfor %}
 
-        </div>
+				<div class="col-md-8 col-xl-8 chat">
+					<div class="card carde">
+						<div class="card-header msg_head">
+							<div class="d-flex bd-highlight">
+								<div class="img_cont">
+									<img src="{{shared_user.user_profile.image.url_60x60}}" class="rounded-circle user_img">
+									<span class="online_icon"></span>
+								</div>
+								<div class="user_info">
+									<span>{{ shared_user.username}}</span>
+									<p>1767 Messages</p>
+								</div>
+								<div class="video_cam">
+									<span><i class="fas fa-video"></i></span>
+									<span><i class="fas fa-phone"></i></span>
+								</div>
+							</div>
+							<span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+							<div class="action_menu">
+								<ul>
+									<li><i class="fas fa-user-circle"></i> View profile</li>
+									<li><i class="fas fa-users"></i> Add to close friends</li>
+									<li><i class="fas fa-plus"></i> Add to group</li>
+									<li><i class="fas fa-ban"></i> Block</li>
+								</ul>
+							</div>
+						</div>
+						<div class="card-body msg_card_body">
+                            {% for user_message in messages %}
+                                {% ifequal request.user user_message.to_who %}
+                                <div class="d-flex justify-content-start mb-4">
+                                    <div class="img_cont_msg">
+                                        <img src="{{user_message.sent_from.user_profile.image.url_60x60}}" class="rounded-circle user_img_msg">
+                                    </div>
+                                    <div class="msg_cotainer">
+                                        {{ user_message.message }}{{ user_message.to_who.pk }}{{ request.user.username }}
+                                        <span class="msg_time">8:40 AM, Today</span>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="d-flex justify-content-end mb-4">
+                                    <div class="msg_cotainer_send">
+                                        {{ user_message.message }}{{ user_message.to_who.pk }}{{ request.user.pk }}
+                                        <span class="msg_time_send">8:55 AM, Today</span>
+                                    </div>
+                                    <div class="img_cont_msg">
+                                     <img src="{{user_message.sent_from.user_profile.image.url_60x60}}" class="rounded-circle user_img_msg">
+                                    </div>
+							    </div>
+                                 {% endifequal %}
+                            {% endfor %}
 
-    </div>
-</div>
+						</div>
+						<div class="card-footer">
+							<form method="post" enctype="multipart/form-data" id="message_btn">
+								{% csrf_token %}
+							<div class="input-group">
+								<div class="input-group-append">
+									<span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+								</div>
+								<input name="message" class="form-control type_msg" placeholder="Type your message..." />
+								<input type="hidden" name="sent_from" value="{{ request.user.id }}" />
+								<input type="hidden" name="to_who" value="{{ shared_user.id }}" />
+								<div class="input-group-append">
+									<span class="input-group-text sender_btn"><i class="fas fa-location-arrow"></i></span>
+								</div>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+<script>
+
+	$(document).ready(function(){
+				$('.sender_btn').click(function(){
+			$('#message_btn').submit();
+		});
+			});
+
+
+</script>>
 {% endblock %}
