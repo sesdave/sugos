@@ -15,7 +15,7 @@ django-libs==2.0.2
 -e git+https://github.com/gbozee/django-paystack.git@fd2d44767e4c3531add523181eda8001c5ef6170#egg=django_paystack
 django-rest-knox==4.1.0
 django-thumbs-v2==0.4.1
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 easy-thumbnails==2.6
 future==0.17.1
 h11==0.8.1
